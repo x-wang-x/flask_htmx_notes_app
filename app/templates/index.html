@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+</head>
+<body>
+    <h1>Notes App</h1>
+    <form hx-post="{{ url_for('add_note') }}" hx-swap="none"">
+        <textarea name="content" placeholder="Enter your note here" required></textarea>
+        <br>
+        <input type="submit" value="Add Note">
+    </form>
+    <h2>Your Notes:</h2>
+    <ul id="data" hx-get="/show_all" hx-trigger="load, load-data from:body">
+    </ul>
+</body>
+</html>
