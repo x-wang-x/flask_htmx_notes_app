@@ -14,6 +14,7 @@ def create_connection(name):
     conn = sqlite3.connect(name)
     conn.row_factory = sqlite3.Row
     return conn
-
+from app.models import init_db
+init_db(create_connection(os.getenv('DB_NAME','app.db')))
 from app import routes
 
